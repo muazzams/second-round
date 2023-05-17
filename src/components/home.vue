@@ -32,8 +32,9 @@ function changeKKCount(e: Event) {
   }
 }
 
-function save() {
-  console.log("saved");
+async function save() {
+  const response = await fetch("http://localhost:8080/api/v1/user/check");
+  console.log(response.body);
 }
 </script>
 

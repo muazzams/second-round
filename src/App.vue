@@ -1,9 +1,7 @@
-<script setup lang="ts">
-import HelloWorld from "./components/home.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <HelloWorld msg="SEÇİM 2023" />
+  <router-view></router-view>
 </template>
 
 <style scoped></style>

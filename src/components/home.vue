@@ -5,10 +5,11 @@ defineProps<{ msg: string }>();
 
 const rteCount = ref(0);
 const kkCount = ref(0);
+const invalidCount = ref(0);
+const regex = /^(?:[1-9]\d*|0)$/;
 
 function changeRteCount(e: Event) {
   const valueString = (<HTMLInputElement>e.target).value;
-  const regex = /^(?:[1-9]\d*|0)$/;
 
   if (regex.test(valueString)) {
     let value = Number(valueString);
@@ -21,7 +22,6 @@ function changeRteCount(e: Event) {
 
 function changeKKCount(e: Event) {
   const valueString = (<HTMLInputElement>e.target).value;
-  const regex = /^(0|[1-9]\d*)$/;
 
   if (regex.test(valueString)) {
     let value = Number(valueString);
@@ -32,9 +32,21 @@ function changeKKCount(e: Event) {
   }
 }
 
+function changeInvalidCount(e: Event) {
+  const valueString = (<HTMLInputElement>e.target).value;
+
+  if (regex.test(valueString)) {
+    let value = Number(valueString);
+    invalidCount.value = Math.max(value, 0);
+  } else {
+    invalidCount.value = 1;
+    invalidCount.value = 0;
+  }
+}
+
 async function save() {
   const response = await fetch("http://localhost:8080/api/v1/user/check");
-  console.log(response.body);
+  console.log(response);
 }
 </script>
 
@@ -78,6 +90,28 @@ async function save() {
       </div>
     </div>
   </div>
+
+  <div class="card">
+    <span class="name">Geçersiz</span>
+    <div>
+      <img src="../assets/gecersiz.png" class="logo invalid" alt="gecersiz" />
+    </div>
+    <div>
+      <button
+        type="button"
+        @click="invalidCount > 0 ? invalidCount-- : invalidCount"
+      >
+        -
+      </button>
+      <input
+        type="text"
+        class="input"
+        :value="invalidCount"
+        @input="changeInvalidCount"
+      />
+      <button type="button" @click="invalidCount++">+</button>
+    </div>
+  </div>
   <button type="button" style="margin-top: 30px" @click="save()">KAYDET</button>
 </template>
 
@@ -92,6 +126,10 @@ async function save() {
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #ed0909aa);
+}
+
+.logo.invalid:hover {
+  filter: drop-shadow(0 0 2em #817f7faa);
 }
 .read-the-docs {
   color: #888;

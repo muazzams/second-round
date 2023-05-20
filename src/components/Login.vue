@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import axios from "axios";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -7,17 +8,22 @@ const username = ref("");
 const password = ref("");
 
 const onLogin = async () => {
-  const response = await fetch("http://localhost:8080/api/v1/auth/login", {
-    method: "POST",
-    body: JSON.stringify({
-      username: username.value,
-      password: password.value,
-    }),
-    credentials: 'include',
-    headers: {
-      "Content-Type": "application/json",
-    },
+  const response = await axios.post("http://localhost:8080/api/v1/auth/login", {
+    username: username.value,
+    password: password.value,
   });
+
+  // const response = await fetch("http://localhost:8080/api/v1/auth/login", {
+  //   method: "POST",
+  //   body: JSON.stringify({
+  //     username: username.value,
+  //     password: password.value,
+  //   }),
+  //   credentials: 'include',
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // });
 
   if (response.status === 200) {
     await router.push({ path: "/" });

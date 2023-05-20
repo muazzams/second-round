@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import axios from "axios";
 import { ref } from "vue";
 
 defineProps<{ msg: string }>();
@@ -45,14 +46,15 @@ function changeInvalidCount(e: Event) {
 }
 
 async function save() {
-  const response = await fetch("http://localhost:3000/api/v1/user/check", {
-    mode: "cors",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  // const response = await fetch("http://localhost:8080/api/v1/user/check", {
+  //   // mode: "cors",
+  //   credentials: "include",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // });
 
+  const response = await axios.get("http://localhost:8080/api/v1/user/check");
   console.log(response);
 }
 </script>

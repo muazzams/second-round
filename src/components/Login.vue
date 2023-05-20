@@ -13,6 +13,7 @@ const onLogin = async () => {
       username: username.value,
       password: password.value,
     }),
+    credentials: 'include',
     headers: {
       "Content-Type": "application/json",
     },

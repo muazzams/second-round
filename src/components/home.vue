@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import axios from "axios";
+import api from "../api";
 import { ref } from "vue";
 
-defineProps<{ msg: string }>();
+console.log("HOME Component Loaded");
 
 const rteCount = ref(0);
 const kkCount = ref(0);
@@ -46,16 +46,13 @@ function changeInvalidCount(e: Event) {
 }
 
 async function save() {
-  const response = await axios.get("http://localhost:8080/api/v1/user/check", {
-    withCredentials: true,
-    baseURL: "http://localhost:8080",
+  api.get("/user/check").then((response) => {
+    console.log("abidino");
   });
-  console.log(response);
 }
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
   <div class="display-flex">
     <div class="card">
       <span class="name">RTE</span>

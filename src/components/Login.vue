@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import axios from "axios";
+import api from "../api";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -8,16 +8,10 @@ const username = ref("");
 const password = ref("");
 
 const onLogin = async () => {
-  const response = await axios.post(
-    "http://localhost:8080/api/v1/auth/login",
-    {
-      username: username.value,
-      password: password.value,
-    },
-    {
-      withCredentials: true,
-    }
-  );
+  const response = await api.post("/auth/login", {
+    username: username.value,
+    password: password.value,
+  });
 
   if (response.status === 200) {
     await router.push({ path: "/" });

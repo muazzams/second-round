@@ -46,15 +46,10 @@ function changeInvalidCount(e: Event) {
 }
 
 async function save() {
-  // const response = await fetch("http://localhost:8080/api/v1/user/check", {
-  //   // mode: "cors",
-  //   credentials: "include",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-
-  const response = await axios.get("http://localhost:8080/api/v1/user/check");
+  const response = await axios.get("http://localhost:8080/api/v1/user/check", {
+    withCredentials: true,
+    baseURL: "http://localhost:8080",
+  });
   console.log(response);
 }
 </script>

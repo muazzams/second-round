@@ -13,18 +13,6 @@ const onLogin = async () => {
     password: password.value,
   });
 
-  // const response = await fetch("http://localhost:8080/api/v1/auth/login", {
-  //   method: "POST",
-  //   body: JSON.stringify({
-  //     username: username.value,
-  //     password: password.value,
-  //   }),
-  //   credentials: 'include',
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-
   if (response.status === 200) {
     await router.push({ path: "/" });
   } else {

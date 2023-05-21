@@ -23,7 +23,7 @@ const onLogin = async () => {
 
 <template>
   <div class="box">
-    <h2>Giris Yap</h2>
+    <h2>Hosgeldiniz</h2>
     <input
       type="text"
       name="username"
@@ -36,7 +36,7 @@ const onLogin = async () => {
       placeholder="Password"
       v-model="password"
     />
-    <button type="button" :onclick="onLogin">Login</button>
+    <button type="button" :onclick="onLogin">Giris Yap</button>
   </div>
 </template>
 
@@ -54,7 +54,7 @@ body {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #191919;
+  /* background: #191919; */
   text-align: center;
 }
 .box h1 {

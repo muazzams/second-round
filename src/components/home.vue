@@ -1,13 +1,20 @@
 <script setup lang="ts">
-import api from "../api";
+import api, { logout } from "../api";
 import { ref } from "vue";
-
-console.log("HOME Component Loaded");
 
 const rteCount = ref(0);
 const kkCount = ref(0);
 const invalidCount = ref(0);
 const regex = /^(?:[1-9]\d*|0)$/;
+const bulletBoxNumber = ref("Herhangi bir sandikta gorevli degilsiniz.");
+let submitButtonEnable = true;
+
+api
+  .get("bullet-box/attendant")
+  .then((res) => {})
+  .catch((error) => {
+    submitButtonEnable = false;
+  });
 
 function changeRteCount(e: Event) {
   const valueString = (<HTMLInputElement>e.target).value;
@@ -53,6 +60,7 @@ async function save() {
 </script>
 
 <template>
+  <h3>{{ bulletBoxNumber }}</h3>
   <div class="display-flex">
     <div class="card">
       <span class="name">RTE</span>
@@ -113,7 +121,20 @@ async function save() {
       <button type="button" @click="invalidCount++">+</button>
     </div>
   </div>
-  <button type="button" style="margin-top: 30px" @click="save()">KAYDET</button>
+  <div class="displayFlex">
+    <button
+      type="button"
+      :disabled="submitButtonEnable"
+      style="margin-top: 30px"
+      @click="save()"
+    >
+      Kaydet
+    </button>
+
+    <button type="button" style="margin-top: 30px" @click="logout()">
+      Çıkış Yap
+    </button>
+  </div>
 </template>
 
 <style scoped>

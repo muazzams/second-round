@@ -51,10 +51,9 @@ body {
 .box {
   width: 300px;
   padding: 40px;
-  position: absolute;
   top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
   /* background: #191919; */
   text-align: center;
 }

@@ -2,7 +2,7 @@
 
 <template>
   <router-view></router-view>
-  <footer style="padding-top: 20px; margin-top: 30px">
+  <footer style="bottom: 10px; margin-top: 40px">
     <span
       >Made with <span class="text-lg">🫶🏻</span> by
       <span>
@@ -27,4 +27,8 @@
   </footer>
 </template>
 
-<style scoped></style>
+<style scoped>
+.display-flex {
+  display: flex;
+}
+</style>

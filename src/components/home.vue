@@ -1,14 +1,16 @@
 <script setup lang="ts">
+import { useToast } from "vue-toast-notification";
 import api, { logout } from "../api";
 import { ref } from "vue";
-
+//width height ver
+//webp e donustur
 const rteCount = ref(0);
 const kkCount = ref(0);
 const invalidCount = ref(0);
 const regex = /^(?:[1-9]\d*|0)$/;
 let bulletBoxId = 0;
 let submitButtonDisable = false;
-
+const toast = useToast();
 const bulletBoxNumber = ref("");
 api
   .get("bullet-box/attendant")
@@ -68,7 +70,9 @@ async function save() {
       invalidCount: invalidCount.value,
     })
     .then((response) => {
-      console.log("abidino");
+      toast.success("Basariyla kaydedildi", {
+        position: "top",
+      });
     });
 }
 </script>
@@ -79,7 +83,7 @@ async function save() {
     <div class="card">
       <span class="name">RTE</span>
       <div>
-        <img src="../assets/rte.png" class="logo" alt="rte" />
+        <img src="../assets/rte.webp" class="logo" alt="rte" />
       </div>
       <div class="display-flex">
         <button type="button" @click="rteCount > 0 ? rteCount-- : rteCount">
@@ -97,7 +101,7 @@ async function save() {
     <div class="card">
       <span class="name">KK</span>
       <div>
-        <img src="../assets/kk.png" class="logo vue" alt="kk" />
+        <img src="../assets/kk.webp" class="logo vue" alt="kk" />
       </div>
       <div class="display-flex">
         <button type="button" @click="kkCount > 0 ? kkCount-- : kkCount">
@@ -113,11 +117,10 @@ async function save() {
       </div>
     </div>
   </div>
-
   <div class="card">
     <span class="name">Geçersiz</span>
     <div>
-      <img src="../assets/gecersiz.png" class="logo invalid" alt="gecersiz" />
+      <img src="../assets/gecersiz.webp" class="logo invalid" alt="gecersiz" />
     </div>
     <div>
       <button
@@ -135,19 +138,16 @@ async function save() {
       <button type="button" @click="invalidCount++">+</button>
     </div>
   </div>
-  <div class="displayFlex">
+  <div class="displayFlex justify-content-space-between">
     <button
+      class="buttons"
       type="button"
       :disabled="submitButtonDisable"
-      style="margin-top: 30px"
       @click="save()"
     >
       Kaydet
     </button>
-
-    <button type="button" style="margin-top: 30px" @click="logout()">
-      Çıkış Yap
-    </button>
+    <button class="buttons" type="button" @click="logout()">Çıkış Yap</button>
   </div>
 </template>
 
@@ -173,6 +173,9 @@ async function save() {
 .display-flex {
   display: flex;
 }
+.justify-content-space-between {
+  justify-content: space-between;
+}
 .name {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -188,12 +191,15 @@ async function save() {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  width: 40px;
+  width: 30px;
   text-align: center;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
   transition: border-color 0.25s;
+}
+.buttons {
+  margin-top: 30px;
 }
 </style>

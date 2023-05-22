@@ -17,7 +17,7 @@ api.interceptors.response.use(
   async (error: AxiosError) => {
     // @ts-ignore
     toast.error(error.response?.data.errorMessage,{
-      position:"top-right"
+      position:"top"
     })
     if (error.response?.status === 401) {
       await router.push({ path: "/login" });

@@ -11,7 +11,7 @@ const regex = /^(?:[1-9]\d*|0)$/;
 let bulletBoxId = 0;
 let submitButtonDisable = false;
 const toast = useToast();
-const bulletBoxNumber = ref("");
+const bulletBoxNumber = ref("SANDIK NO : ");
 api
   .get("bullet-box/attendant")
   .then((res) => {

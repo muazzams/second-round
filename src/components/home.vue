@@ -6,14 +6,22 @@ const rteCount = ref(0);
 const kkCount = ref(0);
 const invalidCount = ref(0);
 const regex = /^(?:[1-9]\d*|0)$/;
-const bulletBoxNumber = ref("Herhangi bir sandikta gorevli degilsiniz.");
-let submitButtonEnable = true;
+let bulletBoxId = 0;
+let submitButtonDisable = false;
 
+const bulletBoxNumber = ref("");
 api
   .get("bullet-box/attendant")
-  .then((res) => {})
+  .then((res) => {
+    bulletBoxId = res.data.id;
+    bulletBoxNumber.value = "SANDIK NO : " + res.data.bulletBoxNumber;
+    rteCount.value = res.data.rteCount;
+    kkCount.value = res.data.kkCount;
+    invalidCount.value = res.data.invalidCount;
+  })
   .catch((error) => {
-    submitButtonEnable = false;
+    console.log("error");
+    submitButtonDisable = true;
   });
 
 function changeRteCount(e: Event) {
@@ -53,9 +61,15 @@ function changeInvalidCount(e: Event) {
 }
 
 async function save() {
-  api.get("/user/check").then((response) => {
-    console.log("abidino");
-  });
+  api
+    .patch("/bullet-box/" + bulletBoxId, {
+      kkCount: kkCount.value,
+      rteCount: rteCount.value,
+      invalidCount: invalidCount.value,
+    })
+    .then((response) => {
+      console.log("abidino");
+    });
 }
 </script>
 
@@ -124,7 +138,7 @@ async function save() {
   <div class="displayFlex">
     <button
       type="button"
-      :disabled="submitButtonEnable"
+      :disabled="submitButtonDisable"
       style="margin-top: 30px"
       @click="save()"
     >

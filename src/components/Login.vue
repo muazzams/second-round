@@ -13,10 +13,11 @@ const onLogin = async () => {
     password: password.value,
   });
 
-  if (response.status === 200) {
+  if (response?.status === 200) {
     await router.push({ path: "/" });
   } else {
     console.log("login failed");
+    console.log(response);
   }
 };
 </script>

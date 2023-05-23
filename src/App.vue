@@ -5,6 +5,6 @@ import FooterComponent from "./components/Footer.vue";
 <template>
   <div class="w-full h-screen">
     <router-view></router-view>
-    <!-- <FooterComponent /> -->
+    <FooterComponent />
   </div>
 </template>

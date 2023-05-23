@@ -1,5 +1,5 @@
 <template>
-  <footer style="bottom: 10px; margin-top: 40px">
+  <footer class="text-center">
     <span
       >Made with <span class="text-lg">🫶🏻</span> by
       <span>

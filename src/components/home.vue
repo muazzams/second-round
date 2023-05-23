@@ -91,31 +91,29 @@ async function save() {
         <div>
           <img
             src="../assets/rte.webp"
-            width="100"
+            width="75"
             height="100"
-            class="h-28"
+            class=""
             alt="rte"
           />
         </div>
         <div class="flex flex-col items-center gap-y-2">
-          <input
-            type="text"
-            class="rounded p-2 border-2 border-black w-24 text-center bg-blue-200"
-            :value="rteCount"
-            @input="changeRteCount"
-          />
-
           <div class="flex">
             <button
-              class="rounded p-2 border-2 border-black w-12 text-center bg-red-200 mr-1"
+              class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] mr-1"
               type="button"
               @click="rteCount > 0 ? rteCount-- : rteCount"
             >
               -
             </button>
-
+            <input
+              type="text"
+              class="rounded-lg p-2 border-2 border-black w-16 text-center bg-[#f9f9f9]"
+              :value="rteCount"
+              @input="changeRteCount"
+            />
             <button
-              class="rounded p-2 border-2 border-black w-12 text-center bg-green-200 ml-1"
+              class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] ml-1"
               type="button"
               @click="rteCount++"
             >
@@ -131,31 +129,29 @@ async function save() {
         <div>
           <img
             src="../assets/kk.webp"
-            width="100"
+            width="75"
             height="100"
-            class="h-28"
+            class=""
             alt="kk"
           />
         </div>
         <div class="flex flex-col items-center gap-y-2">
-          <input
-            type="text"
-            class="rounded p-2 border-2 border-black w-24 text-center bg-blue-200"
-            :value="kkCount"
-            @input="changeKKCount"
-          />
-
           <div class="flex">
             <button
-              class="rounded p-2 border-2 border-black w-12 text-center bg-red-200 mr-1"
+              class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] mr-1"
               type="button"
               @click="kkCount > 0 ? kkCount-- : kkCount"
             >
               -
             </button>
-
+            <input
+              type="text"
+              class="rounded-lg p-2 border-2 border-black w-16 text-center bg-[#f9f9f9]"
+              :value="kkCount"
+              @input="changeKKCount"
+            />
             <button
-              class="rounded p-2 border-2 border-black w-12 text-center bg-green-200 ml-1"
+              class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] ml-1"
               type="button"
               @click="kkCount++"
             >
@@ -172,7 +168,7 @@ async function save() {
       </div>
       <div class="flex items-center gap-x-2">
         <button
-          class="rounded p-2 border-2 border-black w-12 text-center bg-red-200 mr-1"
+          class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] mr-1"
           type="button"
           @click="invalidCount > 0 ? invalidCount-- : invalidCount"
         >
@@ -180,12 +176,12 @@ async function save() {
         </button>
         <input
           type="text"
-          class="rounded p-2 border-2 border-black w-24 text-center bg-blue-200"
+          class="rounded-lg p-2 border-2 border-black w-24 text-center bg-[#f9f9f9]"
           :value="invalidCount"
           @input="changeInvalidCount"
         />
         <button
-          class="rounded p-2 border-2 border-black w-12 text-center bg-green-200 ml-1"
+          class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] ml-1"
           type="button"
           @click="invalidCount++"
         >
@@ -196,7 +192,7 @@ async function save() {
 
     <div class="w-full flex justify-center gap-3">
       <button
-        class="p-2 border-2 border-black w-32 bg-white hover:bg-blue-400 text-black font-bold py-2 px-4 rounded-lg"
+        class="p-2 border-2 border-black w-32 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded-lg bg-[#f9f9f9]"
         type="button"
         :disabled="submitButtonDisable"
         @click="save()"
@@ -205,7 +201,7 @@ async function save() {
       </button>
 
       <button
-        class="p-2 border-2 border-black w-32 bg-white hover:bg-blue-400 text-black font-bold py-2 px-4 rounded-lg"
+        class="p-2 border-2 border-black w-32 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded-lg bg-[#f9f9f9]"
         type="button"
         @click="logout()"
       >

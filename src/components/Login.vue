@@ -23,76 +23,31 @@ const onLogin = async () => {
 </script>
 
 <template>
-  <div class="box">
-    <h2>Hosgeldiniz</h2>
+  <div class="w-full text-center p-10 pt-20 flex flex-col items-center gap-6">
+    <h1 class="text-center font-bold text-lg">Hosgeldiniz</h1>
+
     <input
+      class="w-48 rounded px-2 py-1 border-2 border-blue-400 focus:border-red-700"
       type="text"
       name="username"
       placeholder="Username"
       v-model="username"
     />
+
     <input
+      class="w-48 rounded px-2 py-1 border-2 border-blue-400 focus:border-red-500"
       type="password"
       name="password"
       placeholder="Password"
       v-model="password"
     />
-    <button type="button" :onclick="onLogin">Giris Yap</button>
+
+    <button
+      class="w-48 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+      type="button"
+      :onclick="onLogin"
+    >
+      Giris Yap
+    </button>
   </div>
 </template>
-
-<style scoped>
-body {
-  margin: 0px;
-  padding: 0px;
-  font-family: sans-serif;
-  background: #34495e;
-}
-.box {
-  width: 300px;
-  padding: 40px;
-  top: 30%;
-  /* left: 50%; */
-  /* transform: translate(-50%, -50%); */
-  /* background: #191919; */
-  text-align: center;
-}
-.box h1 {
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.box input[type="text"],
-.box input[type="password"] {
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #3498db;
-  padding: 14px 10px;
-  width: 200px;
-  outline: none;
-  border-radius: 24px;
-}
-.box input[type="text"]:focus,
-.box input[type="password"]:focus {
-  width: 280px;
-  border-color: #2ecc71;
-}
-
-.box input[type="submit"] {
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #3498db;
-  padding: 14px 40px;
-  outline: none;
-  border-radius: 24px;
-  cursor: pointer;
-}
-.box input[type="submit"]:hover {
-  background: #2ecc71;
-}
-</style>

@@ -78,81 +78,145 @@ async function save() {
 </script>
 
 <template>
-  <h3>{{ bulletBoxNumber }}</h3>
-  <div class="display-flex">
-    <div class="card">
-      <span class="name">RTE</span>
-      <div>
-        <img src="../assets/rte.webp" class="logo" alt="rte" />
+  <div class="w-full text-center p-10 flex flex-col items-center gap-10">
+    <div>
+      <h1 class="text-center font-bold text-lg">{{ bulletBoxNumber }}</h1>
+    </div>
+
+    <div class="flex gap-x-6">
+      <div class="flex flex-col items-center gap-3">
+        <div>
+          <span>RTE</span>
+        </div>
+        <div>
+          <img
+            src="../assets/rte.webp"
+            width="100"
+            height="100"
+            class="h-28"
+            alt="rte"
+          />
+        </div>
+        <div class="flex flex-col items-center gap-y-2">
+          <input
+            type="text"
+            class="rounded p-2 border-2 border-black w-24 text-center bg-blue-200"
+            :value="rteCount"
+            @input="changeRteCount"
+          />
+
+          <div class="flex">
+            <button
+              class="rounded p-2 border-2 border-black w-12 text-center bg-red-200 mr-1"
+              type="button"
+              @click="rteCount > 0 ? rteCount-- : rteCount"
+            >
+              -
+            </button>
+
+            <button
+              class="rounded p-2 border-2 border-black w-12 text-center bg-green-200 ml-1"
+              type="button"
+              @click="rteCount++"
+            >
+              +
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="display-flex">
-        <button type="button" @click="rteCount > 0 ? rteCount-- : rteCount">
+      <div class="flex flex-col items-center gap-3">
+        <div>
+          <span>KK</span>
+        </div>
+        <div>
+          <img
+            src="../assets/kk.webp"
+            width="100"
+            height="100"
+            class="h-28"
+            alt="kk"
+          />
+        </div>
+        <div class="flex flex-col items-center gap-y-2">
+          <input
+            type="text"
+            class="rounded p-2 border-2 border-black w-24 text-center bg-blue-200"
+            :value="kkCount"
+            @input="changeKKCount"
+          />
+
+          <div class="flex">
+            <button
+              class="rounded p-2 border-2 border-black w-12 text-center bg-red-200 mr-1"
+              type="button"
+              @click="kkCount > 0 ? kkCount-- : kkCount"
+            >
+              -
+            </button>
+
+            <button
+              class="rounded p-2 border-2 border-black w-12 text-center bg-green-200 ml-1"
+              type="button"
+              @click="kkCount++"
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center gap-3 mt-10">
+      <div>
+        <span>Geçersiz</span>
+      </div>
+      <div class="flex items-center gap-x-2">
+        <button
+          class="rounded p-2 border-2 border-black w-12 text-center bg-red-200 mr-1"
+          type="button"
+          @click="invalidCount > 0 ? invalidCount-- : invalidCount"
+        >
           -
         </button>
         <input
           type="text"
-          class="input"
-          :value="rteCount"
-          @input="changeRteCount"
+          class="rounded p-2 border-2 border-black w-24 text-center bg-blue-200"
+          :value="invalidCount"
+          @input="changeInvalidCount"
         />
-        <button type="button" @click="rteCount++">+</button>
-      </div>
-    </div>
-    <div class="card">
-      <span class="name">KK</span>
-      <div>
-        <img src="../assets/kk.webp" class="logo vue" alt="kk" />
-      </div>
-      <div class="display-flex">
-        <button type="button" @click="kkCount > 0 ? kkCount-- : kkCount">
-          -
+        <button
+          class="rounded p-2 border-2 border-black w-12 text-center bg-green-200 ml-1"
+          type="button"
+          @click="invalidCount++"
+        >
+          +
         </button>
-        <input
-          type="text"
-          class="input"
-          :value="kkCount"
-          @input="changeKKCount"
-        />
-        <button type="button" @click="kkCount++">+</button>
       </div>
     </div>
-  </div>
-  <div class="card">
-    <span class="name">Geçersiz</span>
-    <div>
-      <img src="../assets/gecersiz.webp" class="logo invalid" alt="gecersiz" />
-    </div>
-    <div>
+
+    <div class="w-full flex justify-center gap-3">
       <button
+        class="p-2 border-2 border-black w-32 bg-white hover:bg-blue-400 text-black font-bold py-2 px-4 rounded-lg"
         type="button"
-        @click="invalidCount > 0 ? invalidCount-- : invalidCount"
+        :disabled="submitButtonDisable"
+        @click="save()"
       >
-        -
+        Kaydet
       </button>
-      <input
-        type="text"
-        class="input"
-        :value="invalidCount"
-        @input="changeInvalidCount"
-      />
-      <button type="button" @click="invalidCount++">+</button>
+
+      <button
+        class="p-2 border-2 border-black w-32 bg-white hover:bg-blue-400 text-black font-bold py-2 px-4 rounded-lg"
+        type="button"
+        @click="logout()"
+      >
+        Çıkış Yap
+      </button>
     </div>
-  </div>
-  <div class="displayFlex justify-content-space-between">
-    <button
-      class="buttons"
-      type="button"
-      :disabled="submitButtonDisable"
-      @click="save()"
-    >
-      Kaydet
-    </button>
-    <button class="buttons" type="button" @click="logout()">Çıkış Yap</button>
   </div>
 </template>
 
 <style scoped>
-.logo {
+/* .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
@@ -199,5 +263,5 @@ async function save() {
 }
 .buttons {
   margin-top: 30px;
-}
+} */
 </style>

@@ -2,10 +2,12 @@
 import api from "../api";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toast-notification";
 
 const router = useRouter();
 const username = ref("");
 const password = ref("");
+const toast = useToast();
 
 const onLogin = async () => {
   const response = await api.post("/auth/login", {
@@ -15,9 +17,9 @@ const onLogin = async () => {
 
   if (response?.status === 200) {
     await router.push({ path: "/" });
-  } else {
-    console.log("login failed");
-    console.log(response);
+    toast.success("Giris Basarili", {
+      position: "top",
+    });
   }
 };
 </script>
@@ -27,7 +29,7 @@ const onLogin = async () => {
     <h1 class="text-center font-bold text-lg">Hosgeldiniz</h1>
 
     <input
-      class="w-48 rounded px-2 py-1 border-2 border-blue-400 focus:border-red-700"
+      class="w-48 rounded px-2 py-1 border-2 border-blue-400"
       type="text"
       name="username"
       placeholder="Username"
@@ -35,7 +37,7 @@ const onLogin = async () => {
     />
 
     <input
-      class="w-48 rounded px-2 py-1 border-2 border-blue-400 focus:border-red-500"
+      class="w-48 rounded px-2 py-1 border-2 border-blue-400"
       type="password"
       name="password"
       placeholder="Password"

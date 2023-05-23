@@ -58,7 +58,6 @@ body {
   text-align: center;
 }
 .box h1 {
-  color: white;
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -73,7 +72,6 @@ body {
   padding: 14px 10px;
   width: 200px;
   outline: none;
-  color: white;
   border-radius: 24px;
 }
 .box input[type="text"]:focus,
@@ -91,7 +89,6 @@ body {
   border: 2px solid #3498db;
   padding: 14px 40px;
   outline: none;
-  color: white;
   border-radius: 24px;
   cursor: pointer;
 }

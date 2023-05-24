@@ -2,29 +2,21 @@
 import { useToast } from "vue-toast-notification";
 import api, { logout } from "../api";
 import { ref } from "vue";
-//width height ver
-//webp e donustur
+
 const rteCount = ref(0);
 const kkCount = ref(0);
 const invalidCount = ref(0);
 const regex = /^(?:[1-9]\d*|0)$/;
 let bulletBoxId = 0;
-let submitButtonDisable = false;
 const toast = useToast();
 const bulletBoxNumber = ref("SANDIK NO : ");
-api
-  .get("bullet-box/attendant")
-  .then((res) => {
-    bulletBoxId = res.data.id;
-    bulletBoxNumber.value = "SANDIK NO : " + res.data.bulletBoxNumber;
-    rteCount.value = res.data.rteCount;
-    kkCount.value = res.data.kkCount;
-    invalidCount.value = res.data.invalidCount;
-  })
-  .catch((error) => {
-    console.log("error");
-    submitButtonDisable = true;
-  });
+api.get("bullet-box/attendant").then((res) => {
+  bulletBoxId = res.data.id;
+  bulletBoxNumber.value = "SANDIK NO : " + res.data.bulletBoxNumber;
+  rteCount.value = res.data.rteCount;
+  kkCount.value = res.data.kkCount;
+  invalidCount.value = res.data.invalidCount;
+});
 
 function changeRteCount(e: Event) {
   const valueString = (<HTMLInputElement>e.target).value;
@@ -70,15 +62,19 @@ async function save() {
       invalidCount: invalidCount.value,
     })
     .then((response) => {
-      toast.success("Basariyla kaydedildi", {
-        position: "top",
-      });
+      if (response?.status === 201) {
+        toast.success("Basariyla kaydedildi", {
+          position: "top",
+        });
+      }
     });
 }
 </script>
 
 <template>
-  <div class="w-full text-center p-10 flex flex-col items-center gap-10">
+  <div
+    class="w-full text-center p-10 flex flex-col items-center gap-10 dark:text-white"
+  >
     <div>
       <h1 class="text-center font-bold text-lg">{{ bulletBoxNumber }}</h1>
     </div>
@@ -93,14 +89,14 @@ async function save() {
             src="../assets/rte.webp"
             width="75"
             height="100"
-            class=""
+            class="hover:shadow-2xl hover:shadow-orange-300"
             alt="rte"
           />
         </div>
         <div class="flex flex-col items-center gap-y-2">
           <div class="flex">
             <button
-              class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] mr-1"
+              class="rounded-lg p-2 border-2 w-12 text-center bg-[#f9f9f9] mr-1 dark:bg-slate-700 dark:border-cyan-700"
               type="button"
               @click="rteCount > 0 ? rteCount-- : rteCount"
             >
@@ -108,12 +104,12 @@ async function save() {
             </button>
             <input
               type="text"
-              class="rounded-lg p-2 border-2 border-black w-16 text-center bg-[#f9f9f9]"
+              class="rounded-lg p-2 border-2 w-16 text-center bg-[#f9f9f9] dark:bg-slate-700 dark:border-cyan-700"
               :value="rteCount"
               @input="changeRteCount"
             />
             <button
-              class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] ml-1"
+              class="rounded-lg p-2 border-2 w-12 text-center bg-[#f9f9f9] ml-1 dark:bg-slate-700 dark:border-cyan-700"
               type="button"
               @click="rteCount++"
             >
@@ -131,14 +127,14 @@ async function save() {
             src="../assets/kk.webp"
             width="75"
             height="100"
-            class=""
+            class="hover:shadow-2xl hover:shadow-red-900"
             alt="kk"
           />
         </div>
         <div class="flex flex-col items-center gap-y-2">
           <div class="flex">
             <button
-              class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] mr-1"
+              class="rounded-lg p-2 border-2 w-12 text-center bg-[#f9f9f9] mr-1 dark:bg-slate-700 dark:border-cyan-700"
               type="button"
               @click="kkCount > 0 ? kkCount-- : kkCount"
             >
@@ -146,12 +142,12 @@ async function save() {
             </button>
             <input
               type="text"
-              class="rounded-lg p-2 border-2 border-black w-16 text-center bg-[#f9f9f9]"
+              class="rounded-lg p-2 border-2 w-16 text-center bg-[#f9f9f9] dark:bg-slate-700 dark:border-cyan-700"
               :value="kkCount"
               @input="changeKKCount"
             />
             <button
-              class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] ml-1"
+              class="rounded-lg p-2 border-2 w-12 text-center bg-[#f9f9f9] ml-1 dark:bg-slate-700 dark:border-cyan-700"
               type="button"
               @click="kkCount++"
             >
@@ -168,7 +164,7 @@ async function save() {
       </div>
       <div class="flex items-center gap-x-2">
         <button
-          class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] mr-1"
+          class="rounded-lg p-2 border-2 w-12 text-center bg-[#f9f9f9] mr-1 dark:bg-slate-700 dark:border-cyan-700"
           type="button"
           @click="invalidCount > 0 ? invalidCount-- : invalidCount"
         >
@@ -176,12 +172,12 @@ async function save() {
         </button>
         <input
           type="text"
-          class="rounded-lg p-2 border-2 border-black w-24 text-center bg-[#f9f9f9]"
+          class="rounded-lg p-2 border-2 w-24 text-center bg-[#f9f9f9] dark:bg-slate-700 dark:border-cyan-700"
           :value="invalidCount"
           @input="changeInvalidCount"
         />
         <button
-          class="rounded-lg p-2 border-2 border-black w-12 text-center bg-[#f9f9f9] ml-1"
+          class="rounded-lg p-2 border-2 w-12 text-center bg-[#f9f9f9] ml-1 dark:bg-slate-700 dark:border-cyan-700"
           type="button"
           @click="invalidCount++"
         >
@@ -192,16 +188,15 @@ async function save() {
 
     <div class="w-full flex justify-center gap-3">
       <button
-        class="p-2 border-2 border-black w-32 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded-lg bg-[#f9f9f9]"
+        class="p-2 border-2 w-32 hover:bg-blue-400 font-bold py-2 px-4 rounded-lg bg-[#f9f9f9] dark:bg-slate-700 dark:hover:bg-slate-900 dark:border-cyan-700"
         type="button"
-        :disabled="submitButtonDisable"
         @click="save()"
       >
         Kaydet
       </button>
 
       <button
-        class="p-2 border-2 border-black w-32 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded-lg bg-[#f9f9f9]"
+        class="p-2 border-2 w-32 hover:bg-blue-400 font-bold py-2 px-4 rounded-lg bg-[#f9f9f9] dark:bg-slate-700 dark:hover:bg-slate-900 dark:border-cyan-700"
         type="button"
         @click="logout()"
       >
@@ -211,53 +206,4 @@ async function save() {
   </div>
 </template>
 
-<style scoped>
-/* .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #f6d050aa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #ed0909aa);
-}
-
-.logo.invalid:hover {
-  filter: drop-shadow(0 0 2em #817f7faa);
-}
-.read-the-docs {
-  color: #888;
-}
-.display-flex {
-  display: flex;
-}
-.justify-content-space-between {
-  justify-content: space-between;
-}
-.name {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  transition: border-color 0.25s;
-}
-
-.input {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  width: 30px;
-  text-align: center;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  transition: border-color 0.25s;
-}
-.buttons {
-  margin-top: 30px;
-} */
-</style>
+<style scoped></style>

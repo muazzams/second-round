@@ -26,10 +26,10 @@ const onLogin = async () => {
 
 <template>
   <div class="w-full text-center p-10 pt-20 flex flex-col items-center gap-6">
-    <h1 class="text-center font-bold text-lg">Hosgeldiniz</h1>
+    <h1 class="text-center text-lg">Hosgeldiniz</h1>
 
     <input
-      class="w-48 rounded px-2 py-1 border-2 border-blue-400"
+      class="w-48 rounded-xl p-2 border-2 text-center dark:bg-slate-700 dark:border-cyan-700"
       type="text"
       name="username"
       placeholder="Username"
@@ -37,7 +37,7 @@ const onLogin = async () => {
     />
 
     <input
-      class="w-48 rounded px-2 py-1 border-2 border-blue-400"
+      class="w-48 rounded-xl p-2 border-2 border-[#3498db] text-center dark:bg-slate-700 dark:border-cyan-700"
       type="password"
       name="password"
       placeholder="Password"
@@ -45,7 +45,7 @@ const onLogin = async () => {
     />
 
     <button
-      class="w-48 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+      class="w-48 bg-slate-200 hover:bg-slate-300 py-2 px-4 rounded-xl text-center dark:bg-slate-500 dark:hover:bg-slate-700"
       type="button"
       :onclick="onLogin"
     >

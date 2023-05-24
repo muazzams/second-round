@@ -7,6 +7,7 @@
           href="https://twitter.com/omrumbakitemiz"
           target="_blank"
           rel="noopener noreferrer"
+          class="text-cyan-600"
           >@immino
         </a>
       </span>
@@ -16,6 +17,7 @@
           href="https://twitter.com/abidinozd"
           target="_blank"
           rel="noopener noreferrer"
+          class="text-cyan-600"
         >
           @abidino
         </a></span

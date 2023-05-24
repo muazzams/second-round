@@ -25,8 +25,12 @@ function changeRteCount(e: Event) {
     let value = Number(valueString);
     rteCount.value = Math.max(value, 0);
   } else {
-    rteCount.value = 1;
-    rteCount.value = 0;
+    if (Number(valueString) > 0) {
+      rteCount.value = Number(valueString);
+    } else {
+      rteCount.value = 1;
+      rteCount.value = 0;
+    }
   }
 }
 
@@ -37,8 +41,12 @@ function changeKKCount(e: Event) {
     let value = Number(valueString);
     kkCount.value = Math.max(value, 0);
   } else {
-    kkCount.value = 1;
-    kkCount.value = 0;
+    if (Number(valueString) > 0) {
+      kkCount.value = Number(valueString);
+    } else {
+      kkCount.value = 1;
+      kkCount.value = 0;
+    }
   }
 }
 
@@ -47,10 +55,14 @@ function changeInvalidCount(e: Event) {
 
   if (regex.test(valueString)) {
     let value = Number(valueString);
-    invalidCount.value = Math.max(value, 0);
+    invalidCount.value = value;
   } else {
-    invalidCount.value = 1;
-    invalidCount.value = 0;
+    if (Number(valueString) > 0) {
+      invalidCount.value = Number(valueString);
+    } else {
+      invalidCount.value = 1;
+      invalidCount.value = 0;
+    }
   }
 }
 

@@ -20,7 +20,7 @@ api.interceptors.response.use(
       position:"top"
     })
     if (error.response?.status === 401) {
-      await router.push({ path: "/login" });
+      await router.push("/login");
     } 
   }
 );
@@ -32,7 +32,7 @@ export const checkLogin = async () => {
 
 export async function logout(){
   await api.post("/auth/logout");
-  await router.push({ path: "/login" });
+  await router.push("/login");
 }
 
 export default api;

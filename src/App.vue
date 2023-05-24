@@ -3,7 +3,7 @@ import FooterComponent from "./components/Footer.vue";
 </script>
 
 <template>
-  <div class="w-full h-screen font-mono dark:bg-[#242424] dark:text-white">
+  <div class="w-full font-mono">
     <router-view></router-view>
     <FooterComponent />
   </div>

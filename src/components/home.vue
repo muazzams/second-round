@@ -11,11 +11,11 @@ let bulletBoxId = 0;
 const toast = useToast();
 const bulletBoxNumber = ref("SANDIK NO : ");
 api.get("bullet-box/attendant").then((res) => {
-  bulletBoxId = res.data.id;
-  bulletBoxNumber.value = "SANDIK NO : " + res.data.bulletBoxNumber;
-  rteCount.value = res.data.rteCount;
-  kkCount.value = res.data.kkCount;
-  invalidCount.value = res.data.invalidCount;
+  bulletBoxId = res.data?.id;
+  bulletBoxNumber.value = "SANDIK NO : " + res.data?.bulletBoxNumber;
+  rteCount.value = res.data?.rteCount;
+  kkCount.value = res.data?.kkCount;
+  invalidCount.value = res.data?.invalidCount;
 });
 
 function changeRteCount(e: Event) {
@@ -62,7 +62,7 @@ async function save() {
       invalidCount: invalidCount.value,
     })
     .then((response) => {
-      if (response?.status === 201) {
+      if (response?.status === 200) {
         toast.success("Basariyla kaydedildi", {
           position: "top",
         });

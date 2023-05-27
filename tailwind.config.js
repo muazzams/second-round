@@ -8,5 +8,10 @@ export default {
     extend: {},
   },
   plugins: [],
+  theme: {
+    fontFamily: {
+      'sans': ['Rubik', 'sans-serif']
+    }
+  }
 }
 

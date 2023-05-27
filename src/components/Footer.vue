@@ -10,7 +10,7 @@
       </a>
       <a
         href="http://chpistanbul.org/sandik-kitapcik.pdf"
-        target="_blank"
+        target="_self"
         rel="noopener noreferrer"
         class="text-red-600"
         ><img src="../assets/pdf.webp" width="30" height="30" alt="pdf" />

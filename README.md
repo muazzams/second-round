@@ -1,4 +1,4 @@
-## This project published [is here](https://secim.abidino.dev)
+## This project was published [is here](https://secim.abidino.dev)
 
 username = abidino
 password = test

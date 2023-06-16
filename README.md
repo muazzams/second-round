@@ -1,7 +1,7 @@
 ## This project was published [is here](https://secim.abidino.dev)
 
-username = abidino
-password = test
+- username = abidino
+- password = test
 
 Project has 2 pages as [admin](https://secim.abidino.dev/admin) and [home](https://secim.abidino.dev)
 If your role is admin, you can access admin page otherwise you can not
